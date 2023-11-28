@@ -9,7 +9,6 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity @Table(name = "role")
-@Getter @Setter @NoArgsConstructor
 @NamedQueries({
         @NamedQuery(name = "Role.findById", query = "from Role where id =: id"),
         @NamedQuery(name = "Role.findAll", query = "from Role")
@@ -32,5 +31,48 @@ public class Role {
         this.roleName = roleName;
         this.description = description;
         this.status = status;
+    }
+
+    public Role() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public RoleStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(RoleStatus status) {
+        this.status = status;
+    }
+
+    public List<GrantAccess> getGrantAccesses() {
+        return grantAccesses;
+    }
+
+    public void setGrantAccesses(List<GrantAccess> grantAccesses) {
+        this.grantAccesses = grantAccesses;
     }
 }

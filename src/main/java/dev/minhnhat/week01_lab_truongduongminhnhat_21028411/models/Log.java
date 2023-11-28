@@ -8,7 +8,6 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity @Table(name = "log")
-@Getter @Setter @NoArgsConstructor
 @NamedQueries({
         @NamedQuery(name = "Log.findById", query = "from Log where id =: id"),
         @NamedQuery(name = "Log.findAll", query = "from Log")
@@ -26,11 +25,53 @@ public class Log {
     @Column(name = "log_out")
     private LocalDateTime logOut;
     private String note;
+    public Log() {
+    }
 
     public Log(Account account, LocalDateTime logIn, LocalDateTime logOut, String note) {
         this.account = account;
         this.logIn = logIn;
         this.logOut = logOut;
+        this.note = note;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public LocalDateTime getLogIn() {
+        return logIn;
+    }
+
+    public void setLogIn(LocalDateTime logIn) {
+        this.logIn = logIn;
+    }
+
+    public LocalDateTime getLogOut() {
+        return logOut;
+    }
+
+    public void setLogOut(LocalDateTime logOut) {
+        this.logOut = logOut;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
         this.note = note;
     }
 }

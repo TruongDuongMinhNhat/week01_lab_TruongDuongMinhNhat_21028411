@@ -5,6 +5,7 @@ import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.repositories.IReposi
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 import java.util.Optional;
@@ -67,5 +68,12 @@ public class AccountRepository implements IRepositories<Account, Long> {
     @Override
     public List<Account> findAll() {
         return entityManager.createNamedQuery("Account.findAll").getResultList();
+    }
+
+    public Optional<Account> findAccountByEmailAndPassword(String email, String password) {
+        TypedQuery<Account> query = entityManager.createNamedQuery("Account.findAccountByEmailAndPassword", Account.class);
+        query.setParameter("email", email);
+        query.setParameter("password", password);
+        return Optional.of(query.getSingleResult());
     }
 }

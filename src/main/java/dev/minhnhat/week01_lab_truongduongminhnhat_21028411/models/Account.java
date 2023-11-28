@@ -9,10 +9,10 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity @Table(name = "account")
-@Getter @Setter @NoArgsConstructor
 @NamedQueries({
         @NamedQuery(name = "Account.findById", query = "from Account where id =: id"),
-        @NamedQuery(name = "Account.findAll", query = "from Account")
+        @NamedQuery(name = "Account.findAll", query = "from Account"),
+        @NamedQuery(name = "Account.findAccountByEmailAndPassword", query = "from Account where email =: email and password =: password")
 })
 public class Account {
     @Id
@@ -23,6 +23,7 @@ public class Account {
     private String fullName;
     @Column(nullable = false)
     private String password;
+    @Column(unique = true)
     private String email;
     @Column(nullable = false)
     private String phone;
@@ -34,11 +35,70 @@ public class Account {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
     private List<Log> logs;
 
+    public Account() {
+    }
+
     public Account(String fullName, String password, String email, String phone, AccountStatus status) {
         this.fullName = fullName;
         this.password = password;
         this.email = email;
         this.phone = phone;
         this.status = status;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public AccountStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AccountStatus status) {
+        this.status = status;
+    }
+
+    public List<GrantAccess> getGrantAccesses() {
+        return grantAccesses;
+    }
+
+    public void setGrantAccesses(List<GrantAccess> grantAccesses) {
+        this.grantAccesses = grantAccesses;
+    }
+
+    public List<Log> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<Log> logs) {
+        this.logs = logs;
     }
 }

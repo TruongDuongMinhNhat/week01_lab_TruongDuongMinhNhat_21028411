@@ -38,4 +38,8 @@ public class AccountService implements IServices<Account, Long> {
     public List<Account> findAll() throws Exception {
         return accountRepository.findAll();
     }
+
+    public Account checkLogin(String email, String password) {
+        return accountRepository.findAccountByEmailAndPassword(email,password).orElse(null);
+    }
 }
