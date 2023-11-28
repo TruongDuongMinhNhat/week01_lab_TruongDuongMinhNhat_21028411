@@ -1,14 +1,10 @@
 package dev.minhnhat.week01_lab_truongduongminhnhat_21028411.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 @Entity @Table(name = "grant_access")
 @NamedQueries({
-        @NamedQuery(name = "GrantAccess.findById", query = "from GrantAccess where grantAccessID.account =: account and grantAccessID.role =: role"),
-        @NamedQuery(name = "GrantAccess.findAll", query = "from GrantAccess")
+        @NamedQuery(name = "GrantAccess.findAll", query = "from GrantAccess"),
+        @NamedQuery(name = "GrantAccess.findById", query = "from GrantAccess where grantAccessID.account =: account and grantAccessID.role =: role")
 })
 public class GrantAccess {
 
@@ -18,6 +14,15 @@ public class GrantAccess {
     @Column(name = "is_grant", nullable = false)
     private boolean grant;
     private String note;
+
+    @ManyToOne
+    @JoinColumn(updatable = false, insertable = false)
+    @Transient
+    private Account account;
+    @ManyToOne
+    @JoinColumn(updatable = false, insertable = false)
+    @Transient
+    private Role role;
 
     public GrantAccess() {
     }
@@ -50,5 +55,21 @@ public class GrantAccess {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

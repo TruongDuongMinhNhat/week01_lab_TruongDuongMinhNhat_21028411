@@ -67,4 +67,8 @@ public class RoleRepository implements IRepositories<Role, Long> {
     public List<Role> findAll() {
         return entityManager.createNamedQuery("Role.findAll", Role.class).getResultList();
     }
+
+    public Optional<Role> findByRoleName(String roleName) {
+        return Optional.of(entityManager.createNamedQuery("Role.findByRoleName", Role.class).setParameter("roleName", roleName).getSingleResult());
+    }
 }

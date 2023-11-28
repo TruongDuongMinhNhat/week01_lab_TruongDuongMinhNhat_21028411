@@ -1,7 +1,9 @@
 package dev.minhnhat.week01_lab_truongduongminhnhat_21028411.services.impl;
 
+import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.models.Account;
 import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.models.GrantAccess;
 import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.models.GrantAccessID;
+import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.models.Role;
 import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.repositories.impl.GrantAccessRepository;
 import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.services.IServices;
 import jakarta.inject.Inject;
@@ -11,7 +13,7 @@ import java.util.Optional;
 
 public class GrantAccessService implements IServices<GrantAccess, GrantAccessID> {
     private GrantAccessRepository grantAccessRepository;
-    public GrantAccessService() throws Exception{
+    public GrantAccessService(){
         grantAccessRepository = new GrantAccessRepository();
     }
 
@@ -33,6 +35,11 @@ public class GrantAccessService implements IServices<GrantAccess, GrantAccessID>
     @Override
     public Optional<GrantAccess> findById(GrantAccessID grantAccessID) throws Exception {
         return grantAccessRepository.findById(grantAccessID);
+    }
+
+    public GrantAccess findById(Account account, Role role) {
+        Optional<GrantAccess> grantAccess = grantAccessRepository.findById(account, role);
+        return grantAccess == null ? null : grantAccess.get();
     }
 
     @Override

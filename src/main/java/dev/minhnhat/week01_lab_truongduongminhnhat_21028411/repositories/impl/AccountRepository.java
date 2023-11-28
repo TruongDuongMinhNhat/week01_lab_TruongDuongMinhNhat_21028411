@@ -74,6 +74,6 @@ public class AccountRepository implements IRepositories<Account, Long> {
         TypedQuery<Account> query = entityManager.createNamedQuery("Account.findAccountByEmailAndPassword", Account.class);
         query.setParameter("email", email);
         query.setParameter("password", password);
-        return Optional.of(query.getSingleResult());
+        return Optional.of(query.getSingleResult() == null ? null : query.getSingleResult());
     }
 }

@@ -39,4 +39,8 @@ public class RoleService implements IServices<Role, Long> {
     public List<Role> findAll() throws Exception {
         return roleRepository.findAll();
     }
+
+    public Role findByRoleName(String roleName) {
+        return roleRepository.findByRoleName(roleName).orElse(null);
+    }
 }

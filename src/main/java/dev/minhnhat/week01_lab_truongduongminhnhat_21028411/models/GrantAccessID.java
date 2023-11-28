@@ -20,6 +20,9 @@ public class GrantAccessID implements Serializable {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    public GrantAccessID() {
+    }
+
     public GrantAccessID(Account account, Role role) {
         this.account = account;
         this.role = role;

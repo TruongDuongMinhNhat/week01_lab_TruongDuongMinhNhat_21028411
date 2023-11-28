@@ -11,14 +11,15 @@ import java.util.List;
 @Entity @Table(name = "role")
 @NamedQueries({
         @NamedQuery(name = "Role.findById", query = "from Role where id =: id"),
-        @NamedQuery(name = "Role.findAll", query = "from Role")
+        @NamedQuery(name = "Role.findAll", query = "from Role"),
+        @NamedQuery(name = "Role.findByRoleName", query = "from Role where roleName =: roleName")
 })
 public class Role {
     @Id
     @Column(name = "role_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "role_name", nullable = false)
+    @Column(name = "role_name", nullable = false, unique = true)
     private String roleName;
     private String description;
     @Enumerated(EnumType.ORDINAL)
