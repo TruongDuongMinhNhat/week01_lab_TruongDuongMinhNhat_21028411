@@ -1,5 +1,6 @@
 package dev.minhnhat.week01_lab_truongduongminhnhat_21028411.services.impl;
 
+import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.models.Account;
 import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.models.Role;
 import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.repositories.impl.RoleRepository;
 import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.services.IServices;
@@ -42,5 +43,17 @@ public class RoleService implements IServices<Role, Long> {
 
     public Role findByRoleName(String roleName) {
         return roleRepository.findByRoleName(roleName).orElse(null);
+    }
+
+    public String findAllByHtml() throws Exception {
+        List<Role> roles = findAll();
+        String result = "";
+        for(Role role : roles) {
+            result += ("<tr><td>"+ role.getId() +"</td><td>"+ role.getRoleName() +"</td><td>"+ role.getDescription() +"</td>" +
+                    "<td>"+ role.getStatus().toString() +"</td>" +
+                    "<td><form action='../../control-servlet/update/role' method='get'><input type='submit' name='action' value='Update Role "+ role.getId() +"'></form></td>" +
+                    "<td><form action='../../control-servlet/delete/role' method='get'><input type='submit' name='action' value='Delete Role "+ role.getId() +"'></form></td></tr>");
+        }
+        return result;
     }
 }

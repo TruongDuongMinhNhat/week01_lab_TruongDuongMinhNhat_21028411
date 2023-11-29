@@ -6,4 +6,9 @@ public enum RoleStatus {
     RoleStatus(int value) {
         this.value = value;
     }
+    public static RoleStatus getValue(int value) {
+        if(value == 1) return ACTIVE;
+        else if(value == 0) return DE_ACTIVE;
+        else return DELETE;
+    }
 }

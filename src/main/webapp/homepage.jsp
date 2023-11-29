@@ -12,6 +12,10 @@
 </head>
 <body>
 <div class="container-fluid">
+    <header class="nav navbar justify-content-around">
+        <a href="control-servlet/home">Home</a>
+        <a href="control-servlet/log-out">Log out</a>
+    </header>
     <div class="container-fluid">
         <div class="mb-3 d-flex align-items-center">
             <label class="form-label col-3">ID Account:</label>
@@ -46,10 +50,10 @@
             "        <h3>Management</h3>\n" +
             "    </div>\n" +
             "    <div class=\"container-fluid d-flex justify-content-around\">\n" +
-            "        <a href=\"\">Account Management</a>\n" +
-            "        <a href=\"\">Role Management</a>\n" +
-            "        <a href=\"\">Grant Access Management</a>\n" +
-            "        <a href=\"\">Log Management</a>\n" +
+            "        <a href=\"control-servlet/management/account\">Account Management</a>\n" +
+            "        <a href=\"control-servlet/management/role\">Role Management</a>\n" +
+            "        <a href=\"control-servlet/management/grant-access\">Grant Access Management</a>\n" +
+            "        <a href=\"control-servlet/management/log\">Log Management</a>\n" +
             "    </div>"    %>
 </div>
 </body>

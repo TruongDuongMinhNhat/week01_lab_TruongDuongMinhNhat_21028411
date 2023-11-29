@@ -42,4 +42,16 @@ public class AccountService implements IServices<Account, Long> {
     public Account checkLogin(String email, String password) {
         return accountRepository.findAccountByEmailAndPassword(email,password).orElse(null);
     }
+
+    public String findAllByHtml() throws Exception {
+        List<Account> accounts = findAll();
+        String result = "";
+        for(Account account : accounts) {
+            result += ("<tr><td>"+ account.getId() +"</td><td>"+ account.getFullName() +"</td><td>"+ account.getEmail() +"</td>" +
+                    "<td>"+ account.getPhone() +"</td><td>"+ account.getStatus().toString() +"</td>" +
+                    "<td><form action='../../control-servlet/update/account' method='get'><input type='submit' name='action' value='Update Account "+ account.getId() +"'></form></td>" +
+                    "<td><form action='../../control-servlet/delete/account' method='get'><input type='submit' name='action' value='Delete Account "+ account.getId() +"'></form></td></tr>");
+        }
+        return result;
+    }
 }

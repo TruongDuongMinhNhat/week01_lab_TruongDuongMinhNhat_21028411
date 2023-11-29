@@ -71,9 +71,14 @@ public class AccountRepository implements IRepositories<Account, Long> {
     }
 
     public Optional<Account> findAccountByEmailAndPassword(String email, String password) {
-        TypedQuery<Account> query = entityManager.createNamedQuery("Account.findAccountByEmailAndPassword", Account.class);
-        query.setParameter("email", email);
-        query.setParameter("password", password);
-        return Optional.of(query.getSingleResult() == null ? null : query.getSingleResult());
+        try {
+            TypedQuery<Account> query = entityManager.createNamedQuery("Account.findAccountByEmailAndPassword", Account.class);
+            query.setParameter("email", email);
+            query.setParameter("password", password);
+            return Optional.of(query.getSingleResult());
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return null;
+        }
     }
 }
