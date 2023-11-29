@@ -41,6 +41,12 @@
             <label class="form-label col-3">Password:</label>
             <input class="form-control-plaintext" value="<%= ((Account) request.getServletContext().getAttribute("account")).getPassword()%>">
         </div>
+        <div class="mb-3 d-flex align-items-center">
+            <label class="form-label col-3">List Permissions:</label>
+            <p class="form-control">
+                <%= ((Account) request.getServletContext().getAttribute("account")).getAllPermissionByHtml() %>
+            </p>
+        </div>
         <form action="" method="get" class="text-center">
             <input type="submit" class="btn btn-info" value="Update Account">
         </form>

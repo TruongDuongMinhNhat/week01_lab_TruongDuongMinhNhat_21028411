@@ -109,4 +109,12 @@ public class Account {
     public void setLogs(List<Log> logs) {
         this.logs = logs;
     }
+
+    public String getAllPermissionByHtml() {
+        String result = "";
+        for(GrantAccess grantAccess : grantAccesses) {
+            result += (grantAccess.getGrantAccessID().getRole().getRoleName() + "<br/>");
+        }
+        return result;
+    }
 }
