@@ -1,10 +1,12 @@
 package dev.minhnhat.week01_lab_truongduongminhnhat_21028411.repositories.impl;
 
+import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.models.Account;
 import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.models.Log;
 import dev.minhnhat.week01_lab_truongduongminhnhat_21028411.repositories.IRepositories;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 import java.util.Optional;
@@ -68,5 +70,14 @@ public class LogRepository implements IRepositories<Log, Long> {
     @Override
     public List<Log> findAll() {
         return entityManager.createNamedQuery("Log.findAll", Log.class).getResultList();
+    }
+
+    public Optional<Log> findByAccountWithLogInNearest(Account account) {
+        TypedQuery<Log> query = entityManager.createNamedQuery("Log.findByAccount", Log.class);
+        query.setParameter("account", account);
+        List<Log> logs = query.getResultList();
+        System.out.println(logs);
+        Log log = query.getResultList().get(0);
+        return Optional.of(log);
     }
 }

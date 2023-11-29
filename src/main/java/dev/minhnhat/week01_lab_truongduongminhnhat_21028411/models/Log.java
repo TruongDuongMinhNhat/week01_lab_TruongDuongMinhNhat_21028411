@@ -1,6 +1,7 @@
 package dev.minhnhat.week01_lab_truongduongminhnhat_21028411.models;
 
 import jakarta.persistence.*;
+import jdk.jfr.Name;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +11,8 @@ import java.time.LocalDateTime;
 @Entity @Table(name = "log")
 @NamedQueries({
         @NamedQuery(name = "Log.findById", query = "from Log where id =: id"),
-        @NamedQuery(name = "Log.findAll", query = "from Log")
+        @NamedQuery(name = "Log.findAll", query = "from Log"),
+        @NamedQuery(name = "Log.findByAccount", query = "from Log where account =: account")
 })
 public class Log {
     @Id

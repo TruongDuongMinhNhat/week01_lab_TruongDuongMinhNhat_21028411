@@ -14,10 +14,6 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="mb-3 d-flex align-items-center justify-content-around">
-        <a href="${pageContext.request.contextPath}/homepage.jsp">Home</a>
-        <a href="">Log out</a>
-    </header>
     <div class="container-fluid">
         <h3 class="text-center">Add Grant Access</h3>
         <form action="control-servlet" method="post">

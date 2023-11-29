@@ -55,9 +55,7 @@ public class GrantAccessService implements IServices<GrantAccess, GrantAccessID>
                     "<td>" + grantAccess.getGrantAccessID().getRole().getId() + " - " + grantAccess.getGrantAccessID().getRole().getRoleName() + "</td>" +
                     "<td>" + grantAccess.isGrant() + "</td><td>" + grantAccess.getNote() + "</td>" +
                     "<td><form action='../../control-servlet/update/grant-access' method='get'><input type='hidden' name='account_role' value='" + grantAccess.getGrantAccessID().getAccount().getId() + "_" + grantAccess.getGrantAccessID().getRole().getId() + "'>" +
-                    "<input type='submit' name='action' value='Update Grant'></form></td>" +
-                    "<td><form action='../../control-servlet/update/grant-access' method='get'><input type='hidden' name='account_role' value='" + grantAccess.getGrantAccessID().getAccount().getId() + "_" + grantAccess.getGrantAccessID().getRole().getId() + "'>" +
-                    "<input type='submit' name='action' value='Delete Grant'></form></td>");
+                    "<input type='submit' name='action' value='Update Grant'></form></td></tr>");
         }
         return result;
     }

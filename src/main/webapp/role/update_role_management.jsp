@@ -11,10 +11,6 @@
 </head>
 <body>
 <div class="container-fluid">
-    <header class="nav navbar justify-content-around">
-        <a href="${pageContext.request.contextPath}/homepage.jsp">Home</a>
-        <a href="control-servlet/log-out">Log out</a>
-    </header>
     <div class="container-fluid">
         <h3 class="text-center">Update Role</h3>
         <form action="" method="post">

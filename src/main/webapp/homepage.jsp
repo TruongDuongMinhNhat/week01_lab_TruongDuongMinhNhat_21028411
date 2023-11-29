@@ -14,7 +14,7 @@
 <div class="container-fluid">
     <header class="nav navbar justify-content-around">
         <a href="#">Home</a>
-        <a href="control-servlet/log-out">Log out</a>
+        <a href="control-servlet/log-out/<%=((Account)request.getServletContext().getAttribute("account")).getId()%>">Log out</a>
     </header>
     <div class="container-fluid">
         <div class="mb-3 d-flex align-items-center">

@@ -52,7 +52,7 @@ public class RoleService implements IServices<Role, Long> {
             result += ("<tr><td>"+ role.getId() +"</td><td>"+ role.getRoleName() +"</td><td>"+ role.getDescription() +"</td>" +
                     "<td>"+ role.getStatus().toString() +"</td>" +
                     "<td><form action='../../control-servlet/update/role' method='get'><input type='submit' name='action' value='Update Role "+ role.getId() +"'></form></td>" +
-                    "<td><form action='../../control-servlet/delete/role' method='get'><input type='submit' name='action' value='Delete Role "+ role.getId() +"'></form></td></tr>");
+                    "<td><form action='../../control-servlet/delete/role' method='post'><input type='submit' name='action' value='Delete Role "+ role.getId() +"'></form></td></tr>");
         }
         return result;
     }
