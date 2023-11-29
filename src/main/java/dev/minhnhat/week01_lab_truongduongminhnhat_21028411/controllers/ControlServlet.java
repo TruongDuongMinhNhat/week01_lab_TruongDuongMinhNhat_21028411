@@ -39,9 +39,6 @@ public class ControlServlet extends HttpServlet {
                 } else if(typeObject.equalsIgnoreCase("log")){
                     //Log
                     req.getServletContext().getRequestDispatcher("/log/log_management.jsp").forward(req, resp);
-                } else if(typeObject.equalsIgnoreCase("home")) {
-                    //Home
-                    req.getServletContext().getRequestDispatcher("/home.jsp").forward(req, resp);
                 } else if(typeObject.equalsIgnoreCase("log-out")) {
                     req.getServletContext().setAttribute("loginFailed", "Bạn đã đăng xuất tài khoản");
                     req.getServletContext().setAttribute("account", null);
@@ -64,6 +61,15 @@ public class ControlServlet extends HttpServlet {
                     req.getServletContext().getRequestDispatcher("/role/update_role_management.jsp").forward(req, resp);
                 } else if(typeObject.equalsIgnoreCase("grant-access")) {
                     //Grant - Access
+                    String[] getAction = req.getParameter("account_role").split("_");
+                    long getAccountId = Long.parseLong(getAction[0]);
+                    long getRoleId = Long.parseLong(getAction[1]);
+
+                    Account account = new AccountService().findById(getAccountId).get();
+                    Role role = new RoleService().findById(getRoleId).get();
+                    GrantAccess grantAccess = new GrantAccessService().findById(account, role);
+                    req.getServletContext().setAttribute("grant_access", grantAccess);
+                    req.getServletContext().getRequestDispatcher("/grant-access/update_grant-access_management.jsp").forward(req, resp);
                 }
             } else {
 
@@ -126,7 +132,18 @@ public class ControlServlet extends HttpServlet {
 
                         req.getServletContext().getRequestDispatcher("/role/role_management.jsp").forward(req, resp);
                     } else {
+                        long getAccountId = Long.parseLong(req.getParameter("account"));
+                        long getRoleId = Long.parseLong(req.getParameter("role"));
+                        String getNote = req.getParameter("note");
+                        boolean getIsGrant = req.getParameter("isGrant").equalsIgnoreCase("true");
 
+                        Account account = new AccountService().findById(getAccountId).get();
+                        Role role = new RoleService().findById(getRoleId).get();
+
+                        GrantAccess grantAccess = new GrantAccess(account, role, getIsGrant, getNote);
+                        boolean result = new GrantAccessService().insert(grantAccess);
+
+                        req.getServletContext().getRequestDispatcher("/grant-access/grant-access_management.jsp").forward(req, resp);
                     }
                     //Update Operation
                 } else if(typeAction.equalsIgnoreCase("Update")) {
@@ -160,7 +177,17 @@ public class ControlServlet extends HttpServlet {
                         boolean result = new RoleService().update(role);
                         req.getServletContext().getRequestDispatcher("/role/role_management.jsp").forward(req, resp);
                     } else {
+                        Long getAccountID = Long.parseLong(req.getParameter("account").split("-")[0]);
+                        Long getRoleId = Long.parseLong(req.getParameter("role").split("-")[0]);
 
+                        Account account = new AccountService().findById(getAccountID).get();
+                        Role role = new RoleService().findById(getRoleId).get();
+                        GrantAccess grantAccess = new GrantAccessService().findById(account, role);
+                        grantAccess.setNote(req.getParameter("note"));
+                        grantAccess.setGrant(req.getParameter("isGrant").equalsIgnoreCase("true"));
+
+                        boolean result = new GrantAccessService().update(grantAccess);
+                        req.getServletContext().getRequestDispatcher("/grant-access/grant-access_management.jsp").forward(req, resp);
                     }
                     //Delete Operation
                 } else {

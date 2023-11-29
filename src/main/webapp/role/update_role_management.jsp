@@ -12,7 +12,7 @@
 <body>
 <div class="container-fluid">
     <header class="nav navbar justify-content-around">
-        <a href="../homepage.jsp">Home</a>
+        <a href="${pageContext.request.contextPath}/homepage.jsp">Home</a>
         <a href="control-servlet/log-out">Log out</a>
     </header>
     <div class="container-fluid">
@@ -24,20 +24,20 @@
             </div>
             <div class="mb-3 d-flex">
                 <label class="form-label col-3">Role Name:</label>
-                <input class="form-control" name="name" value="<%= ((Role) request.getServletContext().getAttribute("account")).getRoleName()%>" required>
+                <input class="form-control" name="name" value="<%= ((Role) request.getServletContext().getAttribute("role")).getRoleName()%>" required>
             </div>
             <div class="mb-3 d-flex">
                 <label class="form-label col-3">Role Description:</label>
                 <textarea class="form-control" name="description" required>
-                    <%= ((Role) request.getServletContext().getAttribute("account")).getDescription()%>
+                    <%= ((Role) request.getServletContext().getAttribute("role")).getDescription()%>
                 </textarea>
             </div>
             <div class="mb-3 d-flex">
                 <label class="form-label col-3">Status:</label>
                 <select name="status" class="form-select">
-                    <option value="ACTIVE">ACTIVE</option>
-                    <option value="DE_ACTIVE">DE_ACTIVE</option>
-                    <option value="DELETE">DELETE</option>
+                    <option value="1">ACTIVE</option>
+                    <option value="0">DE_ACTIVE</option>
+                    <option value="-1">DELETE</option>
                 </select>
             </div>
             <div class="container-fluid text-center">

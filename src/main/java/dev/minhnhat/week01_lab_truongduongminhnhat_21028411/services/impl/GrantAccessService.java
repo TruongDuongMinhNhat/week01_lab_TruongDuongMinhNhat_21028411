@@ -46,4 +46,19 @@ public class GrantAccessService implements IServices<GrantAccess, GrantAccessID>
     public List<GrantAccess> findAll() throws Exception {
         return grantAccessRepository.findAll();
     }
+
+    public String findAllByHtml() throws Exception{
+        List<GrantAccess> grantAccesses = findAll();
+        String result = "";
+        for(GrantAccess grantAccess : grantAccesses) {
+            result += ("<tr><td>"+ grantAccess.getGrantAccessID().getAccount().getId() + " - " + grantAccess.getGrantAccessID().getAccount().getFullName() +"</td>" +
+                    "<td>" + grantAccess.getGrantAccessID().getRole().getId() + " - " + grantAccess.getGrantAccessID().getRole().getRoleName() + "</td>" +
+                    "<td>" + grantAccess.isGrant() + "</td><td>" + grantAccess.getNote() + "</td>" +
+                    "<td><form action='../../control-servlet/update/grant-access' method='get'><input type='hidden' name='account_role' value='" + grantAccess.getGrantAccessID().getAccount().getId() + "_" + grantAccess.getGrantAccessID().getRole().getId() + "'>" +
+                    "<input type='submit' name='action' value='Update Grant'></form></td>" +
+                    "<td><form action='../../control-servlet/update/grant-access' method='get'><input type='hidden' name='account_role' value='" + grantAccess.getGrantAccessID().getAccount().getId() + "_" + grantAccess.getGrantAccessID().getRole().getId() + "'>" +
+                    "<input type='submit' name='action' value='Delete Grant'></form></td>");
+        }
+        return result;
+    }
 }

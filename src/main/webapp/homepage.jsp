@@ -13,7 +13,7 @@
 <body>
 <div class="container-fluid">
     <header class="nav navbar justify-content-around">
-        <a href="control-servlet/home">Home</a>
+        <a href="#">Home</a>
         <a href="control-servlet/log-out">Log out</a>
     </header>
     <div class="container-fluid">
