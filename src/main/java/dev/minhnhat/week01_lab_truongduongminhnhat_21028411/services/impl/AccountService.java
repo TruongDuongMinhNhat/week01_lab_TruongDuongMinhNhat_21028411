@@ -40,7 +40,8 @@ public class AccountService implements IServices<Account, Long> {
     }
 
     public Account checkLogin(String email, String password) {
-        return accountRepository.findAccountByEmailAndPassword(email,password).orElse(null);
+        Optional<Account> optionalAccount = accountRepository.findAccountByEmailAndPassword(email,password);
+        return optionalAccount == null ? null : optionalAccount.get();
     }
 
     public String findAllByHtml() throws Exception {

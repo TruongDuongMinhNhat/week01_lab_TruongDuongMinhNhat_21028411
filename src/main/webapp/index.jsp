@@ -11,6 +11,9 @@
 <body>
 <div class="container-fluid">
     <h3 class="text-center">Login Website</h3>
+    <div class="text-center text-danger">
+        <p></p>
+    </div>
     <form action="control-servlet" method="post">
         <div class="mb-3 text-danger text-center">
             <p><%= request.getServletContext().getAttribute("loginFailed") == null ? "" : request.getServletContext().getAttribute("loginFailed") %></p>
